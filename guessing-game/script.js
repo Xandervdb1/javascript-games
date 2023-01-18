@@ -21,7 +21,9 @@ let buttonEvent = (e) => {
     let userInput = document.querySelector(".userInput").value;
     userInput = parseInt(userInput);
     
-    if (randomNumber === userInput) {
+    if (userInput < 1 || userInput > maxNumber) {
+        alert("Pick a number between 1 and 31");
+    } else if (randomNumber === userInput) {
         alert("Awesome! You number " + userInput + " was correct. You can be named many things, hungry not being one of them.");
     } else {
         alert("Bummer... You guessed " + userInput + " and the secret number was " + randomNumber + ".");
