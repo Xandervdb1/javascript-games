@@ -2,36 +2,58 @@ let buttons = document.querySelectorAll(".buttoncontainer button");
 let computerOptions = ["rock", "paper", "scissors"];
 let choices = document.querySelector(".choices"); 
 
+let playerChoice;
+
 const game = (e) => {
-    
     if (e.target.classList[0] === "choice") {
-        let playerChoice = e.target.classList[1];
+        playerChoice = e.target.classList[1];
         if (playerChoice === "rock") {
             let rock = document.createElement("p");
-            rock.innerText = "🪨";
+            rock.innerText = "Player's choice: 🪨";
             while (choices.firstChild) {
                 choices.removeChild(choices.firstChild);
             }
             choices.appendChild(rock);
         } else if (playerChoice === "paper") {
             let paper = document.createElement("p");
-            paper.innerText = "📃";
+            paper.innerText = "Player's choice: 📃";
             while (choices.firstChild) {
                 choices.removeChild(choices.firstChild);
             }
             choices.appendChild(paper);
         } else if (playerChoice === "scissors") {
             let scissors = document.createElement("p");
-            scissors.innerText = "✂️";
+            scissors.innerText = "Player's choice: ✂️";
             while (choices.firstChild) {
                 choices.removeChild(choices.firstChild);
             }
             choices.appendChild(scissors);
         }
     } else {
-        let randomIndex = Math.floor(Math.random() * (computerOptions.length + 1));
+        let randomIndex = Math.floor(Math.random() * computerOptions.length);
         let computerChoice = computerOptions[randomIndex];
-        console.log(computerChoice);
+        
+        if (computerChoice === "rock") {
+            let rock = document.createElement("p");
+            rock.innerText = "Computer's choice 🪨"
+            choices.appendChild(rock);
+        } else if (computerChoice === "paper") {
+            let paper = document.createElement("p");
+            paper.innerText = "Computer's choice 📃"
+            choices.appendChild(paper);
+        } else if (computerChoice === "scissors") {
+            let scissors = document.createElement("p");
+            scissors.innerText = "Computer's choice ✂️"
+            choices.appendChild(scissors);
+        }
+
+        if (playerChoice == computerChoice) {
+            console.log("tie");
+        } else if ((playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper")) {
+            console.log("win");
+        } else {
+            console.log("loss");
+        }
     }
 
 }
