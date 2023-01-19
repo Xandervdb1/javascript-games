@@ -3,6 +3,7 @@ let computerOptions = ["rock", "paper", "scissors"];
 let choices = document.querySelector(".choices"); 
 
 let playerChoice;
+
 const game = (e) => {
     if (e.target.classList[0] === "choice") {
         playerChoice = e.target.classList[1];
@@ -55,6 +56,18 @@ const game = (e) => {
             } else {
                 h1.innerHTML = "You lose!";
             }
+
+            let buttoncontainer = document.querySelector(".buttoncontainer")
+            while (buttoncontainer.firstChild) {
+                buttoncontainer.removeChild(buttoncontainer.firstChild);
+            }
+
+            let playagain = document.querySelector(".playagain");
+            playagain.style.display = "inline";
+            const refresh = (e) => {
+                window.location.reload();
+            }
+            playagain.addEventListener("click", refresh);
         } else {
             alert("Pick your weapon first!")
         }
