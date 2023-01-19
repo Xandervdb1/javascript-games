@@ -3,7 +3,6 @@ let computerOptions = ["rock", "paper", "scissors"];
 let choices = document.querySelector(".choices"); 
 
 let playerChoice;
-
 const game = (e) => {
     if (e.target.classList[0] === "choice") {
         playerChoice = e.target.classList[1];
@@ -30,29 +29,34 @@ const game = (e) => {
             choices.appendChild(scissors);
         }
     } else {
-        let randomIndex = Math.floor(Math.random() * computerOptions.length);
-        let computerChoice = computerOptions[randomIndex];
-        
-        if (computerChoice === "rock") {
-            let rock = document.createElement("p");
-            rock.innerText = "Computer's choice 🪨"
-            choices.appendChild(rock);
-        } else if (computerChoice === "paper") {
-            let paper = document.createElement("p");
-            paper.innerText = "Computer's choice 📃"
-            choices.appendChild(paper);
-        } else if (computerChoice === "scissors") {
-            let scissors = document.createElement("p");
-            scissors.innerText = "Computer's choice ✂️"
-            choices.appendChild(scissors);
-        }
-
-        if (playerChoice == computerChoice) {
-            console.log("tie");
-        } else if ((playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper")) {
-            console.log("win");
+        if (playerChoice) {
+            let randomIndex = Math.floor(Math.random() * computerOptions.length);
+            let computerChoice = computerOptions[randomIndex];
+            
+            if (computerChoice === "rock") {
+                let rock = document.createElement("p");
+                rock.innerText = "Computer's choice 🪨"
+                choices.appendChild(rock);
+            } else if (computerChoice === "paper") {
+                let paper = document.createElement("p");
+                paper.innerText = "Computer's choice 📃"
+                choices.appendChild(paper);
+            } else if (computerChoice === "scissors") {
+                let scissors = document.createElement("p");
+                scissors.innerText = "Computer's choice ✂️"
+                choices.appendChild(scissors);
+            }
+    
+            let h1 = document.querySelector("h1");
+            if (playerChoice == computerChoice) {
+                h1.innerHTML = "It's a tie!";
+            } else if ((playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper")) {
+                h1.innerHTML = "You win!";
+            } else {
+                h1.innerHTML = "You lose!";
+            }
         } else {
-            console.log("loss");
+            alert("Pick your weapon first!")
         }
     }
 
