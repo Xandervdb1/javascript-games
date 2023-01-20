@@ -1,3 +1,37 @@
+body {
+    background-color: darkgrey;
+}
+
 img {
-    width: clamp(100px, 20vw, 150px)
+    width: clamp(100px, 20vw, 150px);
+    border-radius: 1em;
+}
+
+.imagecontainer {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+}
+
+.front {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.back {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 1em;
+    background-color: lightcyan;
+}
+
+.flipcard {
+    transform: rotateY(180deg);
 }
